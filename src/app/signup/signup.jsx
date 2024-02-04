@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const Login = () => {
+const SignUp = () => {
   const router = useRouter();
   const [loginData, setLoginData] = useState({
     email: "",
@@ -46,6 +46,17 @@ const Login = () => {
   return (
     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto h-full">
       <form className="card-body">
+      <div className="form-control">
+          <label className="label">
+            <span className="label-text">Name</span>
+          </label>
+          <input
+            type="Name"
+            placeholder="Enter your name"
+            className="input input-bordered"
+            required
+          />
+        </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -67,19 +78,15 @@ const Login = () => {
             className="input input-bordered"
             required
           />
-          <label className="label">
-            <a href="#" className="label-text-alt link link-hover">
-              Forgot password?
-            </a>
-          </label>
+         
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
-          <button className="btn btn-secondary my-5">Sign Up</button>
+          <button className="btn btn-primary">Sign UP</button>
+          <button className="btn btn-secondary my-5">Login</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;
