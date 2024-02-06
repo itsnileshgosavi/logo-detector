@@ -2,50 +2,47 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const router = useRouter();
-  const [loginData, setLoginData] = useState({
+  const [signupData, setSignupData] = useState({
+    name:"",
     email: "",
     password: "",
   });
 
-  const handleChange = (e) => {
-    setLoginData({
-      ...loginData,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const signupClick = () => {
-    router.push("/signup");
+  
+  const  loginClick= () => {
+    router.push("/login");
   };
 
-  const handleClick = async () => {
+  const handleSignUp = async () => {
     try {
-      const response = await fetch("/api/login", {
+      const response = await fetch("/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(loginData),
+        body: JSON.stringify(signupData),
       });
 
       if (response.ok) {
-        toast.success("User Logged In successfully");
-        document.location.reload();
-        router.push("/your-tasks");
+        toast.success("Registered successfully");
+        
+        router.push("/login");
       } else {
-        console.error("Failed to Login:", response.statusText);
-        toast.error("Invalid email or Password");
+        console.error("Failed to register:", response.statusText);
+        toast.error("failed to reg");
       }
     } catch (error) {
-      console.error("Error logging in user:", error.message);
+      console.error("Error registering in user:", error.message);
       toast.error("failed");
     }
   };
   return (
     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto h-full">
-      <form className="card-body">
+      <div className="card-body">
       <div className="form-control">
           <label className="label">
             <span className="label-text">Name</span>
@@ -54,6 +51,12 @@ const SignUp = () => {
             type="Name"
             placeholder="Enter your name"
             className="input input-bordered"
+            onChange={(event) => {
+              setSignupData({
+                ...signupData,
+                name: event.target.value,
+              });
+            }}
             required
           />
         </div>
@@ -65,6 +68,12 @@ const SignUp = () => {
             type="email"
             placeholder="email"
             className="input input-bordered"
+            onChange={(event) => {
+              setSignupData({
+                ...signupData,
+                email: event.target.value,
+              });
+            }}
             required
           />
         </div>
@@ -76,15 +85,21 @@ const SignUp = () => {
             type="password"
             placeholder="password"
             className="input input-bordered"
+            onChange={(event) => {
+              setSignupData({
+                ...signupData,
+                password: event.target.value,
+              });
+            }}
             required
           />
          
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Sign UP</button>
-          <button className="btn btn-secondary my-5">Login</button>
+          <button className="btn btn-primary" onClick={()=>handleSignUp()}>Sign UP</button>
+          <button className="btn btn-secondary my-5" onClick={()=>loginClick()}>Login Instead?</button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

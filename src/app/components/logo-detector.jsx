@@ -23,14 +23,19 @@ const LogoDetector = () => {
 
           setLogoName(logoName);
         } else {
-          setError("Error: Unable to detect logo. Please try again.");
+          setError("Error: Unable to detect logo. Please try again or try a different image URL.");
         }
       })
       .catch((error) => {
         console.error("Clarifai API Error:", error);
-        setError("Error: Unable to process your request. Please try again.");
+        setError("API Error: Unable to process your request. Please try again.");
       });
   };
+  
+  const handleReset=()=>{
+    setImageUrl("");
+    setLogoName("");
+  }
 
   return (
     <div>
@@ -55,27 +60,37 @@ const LogoDetector = () => {
       <div id="detect" className="hero min-h-screen bg-base-200">
         <div className="hero-content text-center">
           <div className="max-w-md">
-            <div className="card w-96 bg-base-100 shadow-xl my-10">
+            <div className="card w-auto bg-base-100 shadow-xl my-10">
               <div className="card-body items-center text-center">
                 <h2 className="card-title">Welcome!</h2>
-                <p>This app will detect a logo in the image. Give it a try.</p>
-
-                <input
-                  className="input input-bordered w-full max-w-xs my-10"
-                  type="text"
-                  id="inputUrl"
-                  value={imageUrl}
-                  onChange={(e) => setImageUrl(e.target.value)}
-                  placeholder="Enter Image URL"
-                />
-                <figure className="px-10 pt-10">
-                  <img src={imageUrl} alt="" className="rounded-xl" />
-                </figure>
-                <div className="card-actions">
-                  <button className="btn btn-primary" onClick={handleDetect}>
-                    Detect
-                  </button>
-                </div>
+                <p>This app can detect a logo in the image. Give it a try.</p>
+                
+                  <input
+                    className="input input-bordered w-full max-w-xs my-10"
+                    type="text"
+                    id="inputUrl"
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    placeholder="Enter Image URL"
+                    required
+                  />
+                  <figure className="px-10 pt-10">
+                    <img src={imageUrl} alt="" className="rounded-xl" />
+                  </figure>
+                  <div className="card-actions">
+                    <button className="btn btn-primary" type="submit"onClick={handleDetect}>
+                      Detect
+                    </button>
+                    
+                    <button
+                      type="reset"
+                      className="btn btn-ghost bg-red-600 hover:bg-red-900"
+                      onClick={() => handleReset()}
+                    >
+                      Reset
+                    </button>
+                  </div>
+                
                 <div className="card-body items-center text-center">
                   {logoName ? (
                     <div className="mt-4">

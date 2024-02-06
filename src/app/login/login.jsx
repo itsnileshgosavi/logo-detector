@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const router = useRouter();
@@ -10,17 +11,12 @@ const Login = () => {
     password: "",
   });
 
-  const handleChange = (e) => {
-    setLoginData({
-      ...loginData,
-      [e.target.name]: e.target.value,
-    });
-  };
   const signupClick = () => {
     router.push("/signup");
   };
 
-  const handleClick = async () => {
+  const handleLogin = async () => {
+    console.log(loginData)
     try {
       const response = await fetch("/api/login", {
         method: "POST",
@@ -32,8 +28,9 @@ const Login = () => {
 
       if (response.ok) {
         toast.success("User Logged In successfully");
-        document.location.reload();
-        router.push("/your-tasks");
+        router.push("/");
+       
+          console.log("logged in")
       } else {
         console.error("Failed to Login:", response.statusText);
         toast.error("Invalid email or Password");
@@ -45,7 +42,7 @@ const Login = () => {
   };
   return (
     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto h-full">
-      <form className="card-body">
+      <div className="card-body">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -54,6 +51,12 @@ const Login = () => {
             type="email"
             placeholder="email"
             className="input input-bordered"
+            onChange={(event) => {
+              setLoginData({
+                ...loginData,
+                email: event.target.value,
+              });
+            }}
             required
           />
         </div>
@@ -65,6 +68,12 @@ const Login = () => {
             type="password"
             placeholder="password"
             className="input input-bordered"
+            onChange={(event) => {
+              setLoginData({
+                ...loginData,
+                password: event.target.value,
+              });
+            }}
             required
           />
           <label className="label">
@@ -74,10 +83,10 @@ const Login = () => {
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
-          <button className="btn btn-secondary my-5">Sign Up</button>
+          <button className="btn btn-primary" onClick={handleLogin}>Login</button>
+          <button className="btn btn-secondary my-5" onClick={signupClick}>Sign Up</button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
