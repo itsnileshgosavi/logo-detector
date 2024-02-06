@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 const Header = () => {
  
   const context = useContext(UserContext);
-   console.log(context.user[0].name);
+   
 
   const router=useRouter();
 
@@ -56,7 +56,7 @@ const Header = () => {
               </li>
               <li className="m-3">
                 <Link href="/profile" className="hover:text-blue-500">
-                  Profile ({context.user[0].name})
+                  Profile ({context.user[0]?.name})
                 </Link>
               </li>
             </ul>

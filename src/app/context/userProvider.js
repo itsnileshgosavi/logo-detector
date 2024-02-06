@@ -30,11 +30,6 @@ function UserProvider({ children }) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    // Handle error state, show error message or render fallback UI
-    return <div>Error: {error.message}</div>;
-  }
-
   return (
     <UserContext.Provider value={{ user, setUser }}>
       {children}
