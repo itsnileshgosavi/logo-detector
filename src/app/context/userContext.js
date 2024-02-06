@@ -1,6 +1,6 @@
 'use client'
 
-const { createContext } = require("react");
+import { createContext } from "react";
 
 const UserContext = createContext({});
 

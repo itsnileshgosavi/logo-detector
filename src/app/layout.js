@@ -4,6 +4,7 @@ import Footer from "./components/footer";
 import Header from "./components/header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import UserProvider from "./context/userProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,21 +17,23 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="dim">
       <body className={inter.className}>
-        <Header />
-        {children}
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
-        <Footer />
+        <UserProvider>
+          <Header />
+          {children}
+          <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
+          <Footer />
+        </UserProvider>
       </body>
     </html>
   );

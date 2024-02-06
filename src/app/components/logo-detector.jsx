@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import Clarifai from "clarifai";
+import UserContext from "../context/userContext";
+import { useContext } from "react";
+
 
 const app = new Clarifai.App({
   apiKey: process.env.NEXT_PUBLIC_CLARIFAI_KEY,
@@ -10,6 +13,8 @@ const LogoDetector = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [logoName, setLogoName] = useState("");
   const [error, setError] = useState("");
+
+  const context =useContext(UserContext);
 
   const handleDetect = () => {
     setError("");
@@ -38,12 +43,13 @@ const LogoDetector = () => {
   }
 
   return (
+    
     <div>
       <div>
         <div className="hero min-h-screen bg-base-200">
           <div className="hero-content text-center">
             <div className="max-w-md">
-              <h1 className="text-5xl font-bold">Hi there</h1>
+              <h1 className="text-5xl font-bold">Hi {context.user[0].name}!</h1>
               <p className="py-6">
                 This app can detect the logo of most international companies.
                 All you have to do is copy the image address and paste it in the

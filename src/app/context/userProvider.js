@@ -4,32 +4,39 @@ import React, { useEffect, useState } from "react";
 import UserContext from "./userContext";
 import { currentUser } from "../services/userServices";
 
-
-
-
 function UserProvider({ children }) {
   const [user, setUser] = useState(undefined);
-  const User= currentUser();
-  console.log(User)
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function load() {
+    async function loadUserData() {
       try {
-        const userdata = await currentUser();
-        console.log(userdata)
-        setUser({ ...userdata });
+        const userData = await currentUser();
+        setUser({ ...userData });
+        setIsLoading(false);
       } catch (error) {
-        console.log(error);
-
-        setUser(undefined);
+        console.error("Error fetching user data:", error);
+        setError(error);
+        setIsLoading(false);
       }
     }
 
-    load();
+    loadUserData();
   }, []);
 
+  if (isLoading) {
+    // You can return a loading indicator here
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    // Handle error state, show error message or render fallback UI
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
-    <UserContext.Provider value={{ user }}>
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
     </UserContext.Provider>
   );

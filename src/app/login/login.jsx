@@ -16,7 +16,7 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
-    console.log(loginData)
+   
     try {
       const response = await fetch("/api/login", {
         method: "POST",

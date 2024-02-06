@@ -7,10 +7,15 @@ import { useContext } from 'react';
 import UserContext from '../context/userContext';
 import { logout } from '../services/userServices';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const Header = () => {
  
   const context = useContext(UserContext);
+   console.log(context.user[0].name);
+
+  const router=useRouter();
+
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -23,7 +28,7 @@ const Header = () => {
     try {
       const result = await logout();
       console.log(result);
-      context.setUser(undefined);
+    
       setIsLoggedIn(false);
       router.push('/login');
       toast.info('Logged out');
@@ -51,7 +56,7 @@ const Header = () => {
               </li>
               <li className="m-3">
                 <Link href="/profile" className="hover:text-blue-500">
-                  Profile
+                  Profile ({context.user[0].name})
                 </Link>
               </li>
             </ul>

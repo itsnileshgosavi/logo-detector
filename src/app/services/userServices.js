@@ -2,17 +2,23 @@
 import { httpAxios } from "@/app/helper/httpHelper";
 
 export async function logout() {
-    const result = await httpAxios
-      .post("/api/logout")
-      .then((response) => response.data);
-      console.log(response)
-    return result;
-  };
-
-  export async function currentUser() {
-    const result = await httpAxios
-      .get("/api/current-user")
-      .then((response) => response.data);
-      console.log(response)
-    return result;
+  try {
+    const result = await httpAxios.post("/api/logout");
+    console.log(result.data); // Logging the response data
+    return result.data;
+  } catch (error) {
+    console.error("Error logging out:", error);
+    throw error; // Rethrow the error to handle it elsewhere if needed
   }
+}
+
+export async function currentUser() {
+  try {
+    const result = await httpAxios.get("/api/current-user");
+    console.log(result.data); // Logging the response data
+    return result.data;
+  } catch (error) {
+    console.error("Error getting current user:", error);
+    throw error; // Rethrow the error to handle it elsewhere if needed
+  }
+}
