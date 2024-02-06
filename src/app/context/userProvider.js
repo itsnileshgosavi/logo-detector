@@ -1,26 +1,23 @@
-"use client"
+'use client'
 
 import React, { useEffect, useState } from "react";
 import UserContext from "./userContext";
-import { httpAxios } from "../helper/httpHelper";
+import { currentUser } from "../services/userServices";
 
 
-async function currentUser() {
-  const result = await httpAxios
-    .get("/api/current-user")
-    .then((response) => response.data);
-  return result;
-}
+
 
 function UserProvider({ children }) {
   const [user, setUser] = useState(undefined);
+  const User= currentUser();
+  console.log(User)
 
   useEffect(() => {
     async function load() {
       try {
-        const tempUser = await currentUser();
-        console.log(tempUser);
-        setUser({ ...tempUser });
+        const userdata = await currentUser();
+        console.log(userdata)
+        setUser({ ...userdata });
       } catch (error) {
         console.log(error);
 
@@ -32,7 +29,7 @@ function UserProvider({ children }) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user }}>
       {children}
     </UserContext.Provider>
   );
