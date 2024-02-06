@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 import { useEffect } from 'react'
 import { useContext } from 'react'
 import UserContext from '../context/userContext'
+import { logout } from '../services/userServices'
 
 const Header = () => {
   const context=useContext(UserContext);
@@ -19,6 +20,19 @@ const Header = () => {
     const token = getLoginTokenFromCookies();
     
   }, []);
+
+  const doLogout = async () => {
+    try {
+      const result = await logout();
+      console.log(result);
+      context.setUser(undefined);
+      router.push("/login");
+      toast.info("Logged out");
+    } catch (error) {
+      console.log("Something went wrong logging out");
+      toast.error("Error logging out");
+    }
+  };
 
  
   return (
@@ -49,6 +63,8 @@ const Header = () => {
             </>
           ) : (
             <>
+            <Link href="/profile/user" className='hover:text-green-600'>{context.user?.name}</Link>
+              <button className="ms-1 px-3 py-0 bg-red-700 text-white rounded-3xl hover:bg-red-500 focus:outline-none focus:border-gray-700 focus:ring focus:ring-gray-200">Logout</button>
             
               <Link href="/login" className='hover:text-yellow-800'>Login</Link>
               <Link href="/signup" className='hover:text-yellow-600'>Sign Up</Link>
