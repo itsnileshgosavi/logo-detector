@@ -41,7 +41,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto h-full">
+    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-slate-800 mx-auto h-full border border-white my-10">
       <div className="card-body">
         <div className="form-control">
           <label className="label">
@@ -49,7 +49,7 @@ const Login = () => {
           </label>
           <input
             type="email"
-            placeholder="email"
+            placeholder="enter your email here"
             className="input input-bordered"
             onChange={(event) => {
               setLoginData({
@@ -66,7 +66,7 @@ const Login = () => {
           </label>
           <input
             type="password"
-            placeholder="password"
+            placeholder="enter your password here"
             className="input input-bordered"
             onChange={(event) => {
               setLoginData({

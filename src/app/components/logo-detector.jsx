@@ -49,7 +49,7 @@ const LogoDetector = () => {
         <div className="hero min-h-screen bg-base-200">
           <div className="hero-content text-center">
             <div className="max-w-md">
-              <h1 className="text-5xl font-bold">Hi {context.user[0].name}!</h1>
+              <h1 className="text-5xl font-bold">Hi {context.user[0]?.name}!</h1>
               <p className="py-6">
                 This app can detect the logo of most international companies.
                 All you have to do is copy the image address and paste it in the
