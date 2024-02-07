@@ -27,7 +27,7 @@ function UserProvider({ children }) {
 
   if (isLoading) {
     // You can return a loading indicator here
-    return <div>Loading...</div>;
+    return <div className="flex justify-center"><span className="loading loading-ring loading-lg"></span></div>;
   }
 
   return (
