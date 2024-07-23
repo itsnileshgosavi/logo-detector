@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Home:Logo Detector",
   description: "This app can identify any brand by its logo",
+  icons: {
+    icon: "/gemini.png",
+  },
 };
 
 export default function RootLayout({ children }) {

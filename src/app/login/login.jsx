@@ -10,14 +10,24 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [ isLoading, setIsLoading] = useState(false);
 
   const signupClick = () => {
     router.push("/signup");
   };
 
   const handleLogin = async () => {
-   
+   let emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     try {
+      if (loginData.email === "" || loginData.password === "") {
+        toast.error("Email or Password cannot be empty");
+        return;
+        
+      }else if(!emailregex.test(loginData.email)){
+        toast.error("Please enter valid email");
+        return;
+      }
+      setIsLoading(true);
       const response = await fetch("/api/login", {
         method: "POST",
         headers: {
@@ -27,7 +37,7 @@ const Login = () => {
       });
 
       if (response.ok) {
-        toast.success("User Logged In successfully");
+        toast.success("Success!!");
         router.push("/");
        
           console.log("logged in")
@@ -38,10 +48,12 @@ const Login = () => {
     } catch (error) {
       console.error("Error logging in user:", error.message);
       toast.error("failed");
+    }finally{
+      setIsLoading(false);
     }
   };
   return (
-    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-slate-800 mx-auto h-full border border-white my-10">
+    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-gray-800 mx-auto h-full border border-white my-10">
       <div className="card-body">
         <div className="form-control">
           <label className="label">
@@ -83,7 +95,7 @@ const Login = () => {
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary" onClick={handleLogin}>Login</button>
+          <button className={`btn btn-primary flex justify-center items-center ${isLoading ? "loading loading-ring btn-disabled" : ""}`} disabled={isLoading} onClick={handleLogin}>Login</button>
           <button className="btn btn-secondary my-5" onClick={signupClick}>Sign Up</button>
         </div>
       </div>

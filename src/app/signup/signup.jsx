@@ -11,14 +11,24 @@ const SignUp = () => {
     email: "",
     password: "",
   });
+  const [ isLoading, setIsLoading] = useState(false);
 
   
   const  loginClick= () => {
     router.push("/login");
   };
+  let emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
   const handleSignUp = async () => {
     try {
+      setIsLoading(true);
+      if (signupData.name === "" || signupData.email === "" || signupData.password === "") {
+        toast.error("Please fill all the fields");
+        return; 
+      }else if(!emailregex.test(signupData.email)){
+        toast.error("Please enter valid email");
+        return;
+      }
       const response = await fetch("/api/signup", {
         method: "POST",
         headers: {
@@ -38,11 +48,13 @@ const SignUp = () => {
     } catch (error) {
       console.error("Error registering in user:", error.message);
       toast.error("failed");
+    }finally{
+      setIsLoading(false);
     }
   };
   return (
     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-slate-800 mx-auto h-full my-10">
-      <div className="card-body">
+      <form className="card-body" onSubmit={()=>handleSignUp()}>
       <div className="form-control">
           <label className="label">
             <span className="label-text">Name</span>
@@ -96,10 +108,10 @@ const SignUp = () => {
          
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary" onClick={()=>handleSignUp()}>Sign UP</button>
+          <button type="submit" className={`btn btn-primary flex justify-center items-center ${isLoading ? "loading loading-ring btn-disabled" : ""}`} disabled={isLoading} >Sign UP</button>
           <button className="btn btn-secondary my-5" onClick={()=>loginClick()}>Login Instead?</button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
