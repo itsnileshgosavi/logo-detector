@@ -49,7 +49,7 @@ const Header = () => {
         </div>
         <div className="md:flex hidden">
           {isLoggedIn && (
-            <ul className="flex m-3 justify-items-center">
+            <ul className="flex m-3 justify-items-center text-white">
               <li className="m-3">
                 <Link href="/" className={`hover:text-blue-500 ${pathname === '/' ? 'text-red-500' : ''}`}>
                   Home
@@ -73,7 +73,7 @@ const Header = () => {
             </ul>
           )}
         </div>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 text-white">
           {isLoggedIn ? (
             <>
               <button onClick={handleLogout} className="hidden md:block ms-1 px-3 py-0 bg-red-700 text-white rounded-3xl hover:bg-red-500 focus:outline-none focus:border-gray-700 focus:ring focus:ring-gray-200">Logout</button>

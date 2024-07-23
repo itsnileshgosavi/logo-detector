@@ -84,7 +84,7 @@ const Generative = () => {
     
 
     return (
-        <div className='bg-gray-500 w-auto h-auto p-5 flex flex-col items-center'>
+        <div className='bg-gray-500 w-auto h-auto p-5 flex flex-col items-center text-white'>
             <input
                 className='input input-bordered w-full max-w-xs my-10'
                 type="url"

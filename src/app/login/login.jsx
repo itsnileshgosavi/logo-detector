@@ -50,10 +50,11 @@ const Login = () => {
       toast.error("failed");
     }finally{
       setIsLoading(false);
+      router.refresh();
     }
   };
   return (
-    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-gray-800 mx-auto h-full border border-white my-10">
+    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-gray-800 mx-auto h-full border border-white my-10 text-white">
       <div className="card-body">
         <div className="form-control">
           <label className="label">

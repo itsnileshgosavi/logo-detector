@@ -13,7 +13,7 @@ const LogoDetector = () => {
     
     <div>
       <div>
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-base-200 text-white">
           <div className="hero-content text-center">
             <div className="max-w-md">
               <h1 className="text-5xl font-bold">Hi {context.user[0]?.name}!</h1>

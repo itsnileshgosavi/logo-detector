@@ -44,7 +44,7 @@ const Clarifaiii = () => {
     setError("");
   }
   return (
-    <div id="detect" className="hero min-h-screen bg-base-200">
+    <div id="detect" className="hero min-h-screen bg-base-200 text-white">
         <div className="hero-content text-center">
           <div className="max-w-md">
             <div className="card w-auto bg-base-100 shadow-xl my-10">

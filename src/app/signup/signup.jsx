@@ -40,7 +40,6 @@ const SignUp = () => {
       if (response.ok) {
         toast.success("Registered successfully");
         
-        router.push("/login");
       } else {
         console.error("Failed to register:", response.statusText);
         toast.error("failed to reg");
@@ -50,10 +49,11 @@ const SignUp = () => {
       toast.error("failed");
     }finally{
       setIsLoading(false);
+      
     }
   };
   return (
-    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-slate-800 mx-auto h-full my-10">
+    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-slate-800 mx-auto h-full my-10 text-white">
       <form className="card-body" onSubmit={()=>handleSignUp()}>
       <div className="form-control">
           <label className="label">
