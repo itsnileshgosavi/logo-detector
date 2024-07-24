@@ -1,5 +1,5 @@
 export const metadata = {
-    title: "Login Page",
+    title: "Login to Logo Detector",
     description: "This app can identify any brand by its logo",
   };
   

@@ -44,16 +44,16 @@ const Clarifaiii = () => {
     setError("");
   }
   return (
-    <div id="detect" className="hero min-h-screen bg-base-200 text-white">
+    <div id="detect" className="hero min-h-screen bg-neutral text-primary">
         <div className="hero-content text-center">
           <div className="max-w-md">
-            <div className="card w-auto bg-base-100 shadow-xl my-10">
+            <div className="card w-auto bg-base-200 dark:bg-slate-400 shadow-xl my-10">
               <div className="card-body items-center text-center">
-                <h2 className="card-title">Welcome!</h2>
-                <p>This app can detect a logo in the image. Give it a try.</p>
+                <h2 className="card-title font-poppins">Welcome!</h2>
+                <p className="font-poppins">This app can detect a logo in the image. Give it a try.</p>
                 
                   <input
-                    className="input input-bordered w-full max-w-xs my-10"
+                    className="input input-bordered bg-secondary dark:bg-white dark:text-black w-full max-w-xs my-10"
                     type="text"
                     id="inputUrl"
                     value={imageUrl}

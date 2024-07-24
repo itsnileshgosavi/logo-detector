@@ -43,16 +43,16 @@ export default function ProfilePage() {
 
   return (
     <>
-      <div className="hero min-h-screen bg-base-200 text-white">
+      <div className="hero min-h-screen bg-neutral text-primary">
         <div className="hero-content text-center">
           <div className="max-w-md">
-            <h1 className="text-5xl font-bold">
+            <h1 className="text-5xl font-bold font-montserrat">
               Hello {context.user[0]?.name}!
             </h1>
-            <p className="py-6">{context.user[0]?.name}</p>
-            <p className="py-6">{context.user[0]?.email}</p>
+            <p className="my-4 font-poppins">{context.user[0]?.name}</p>
+            <p className="my-5 font-poppins">{context.user[0]?.email}</p>
             <button
-              className="btn btn-secondary hover:bg-red-800"
+              className="btn bg-red-600 text-secondary hover:bg-red-800"
               onClick={() => deleteAccount()}
             >
               Delete Account

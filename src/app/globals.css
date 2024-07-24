@@ -26,3 +26,22 @@ body {
     text-wrap: balance;
   }
 }
+@layer base {
+  @font-face {
+    font-family: 'monteserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(assets/fonts/Poppins/Poppins-Light.ttf) format('truetype');
+  }
+  body{
+    background-color: white !important;
+  }
+}

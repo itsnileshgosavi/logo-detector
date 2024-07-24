@@ -40,18 +40,18 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-slate-950 p-4 w-full">
+    <header className=" p-4 w-full h-14 flex justify-center items-center bg-neutral">
       <nav className="navbar flex items-center justify-between">
         <div>
           <Link href="/">
-            <div className="btn btn-ghost text-sm md:text-xl text-white font-bold hover:text-blue-500">LOGO DETECTOR</div>
+            <div className="btn btn-ghost font-poppins text-sm md:text-xl text-primary font-extrabold hover:text-blue-500">LOGO DETECTOR</div>
           </Link>
         </div>
         <div className="md:flex hidden">
           {isLoggedIn && (
-            <ul className="flex m-3 justify-items-center text-white">
+            <ul className="flex m-3 justify-items-center text-primary font-poppins font-bold uppercase">
               <li className="m-3">
-                <Link href="/" className={`hover:text-blue-500 ${pathname === '/' ? 'text-red-500' : ''}`}>
+                <Link href="/" className={`hover:text-blue-500 ${pathname === '/' ? 'text-red-500 font-extrabold' : ''}`}>
                   Home
                 </Link>
               </li>
@@ -73,24 +73,24 @@ const Header = () => {
             </ul>
           )}
         </div>
-        <div className="flex space-x-4 text-white">
+        <div className="flex space-x-4 text-primary font-poppins font-bold">
           {isLoggedIn ? (
             <>
-              <button onClick={handleLogout} className="hidden md:block ms-1 px-3 py-0 bg-red-700 text-white rounded-3xl hover:bg-red-500 focus:outline-none focus:border-gray-700 focus:ring focus:ring-gray-200">Logout</button>
+              <button onClick={handleLogout} className="hidden md:block bg-red-600 p-3 text-white rounded-lg font-bold focus:ring-1 active:scale-95 hover:bg-red-500">Logout</button>
             </>
           ) : (
             <>
-              <Link href="/login" className="hover:text-yellow-800">
+              <Link href="/login" className="hover:text-blue-600 p-3 bg-base-100 dark:bg-gray-600 font-bold rounded-lg">
                 Login
               </Link>
-              <Link href="/signup" className="hover:text-yellow-600">
+              <Link href="/signup" className="hover:text-blue-600 p-3 bg-primary rounded-lg text-neutral">
                 Sign Up
               </Link>
             </>
           )}
         </div>
         {isLoggedIn && <div class="dropdown dropdown-end m-0 md:hidden">
-          <div tabindex="0" role="button" class="btn m-1">&#9776;</div>
+          <div tabindex="0" role="button" class="btn m-1 font-poppins font-extralight">&#9776;</div>
           <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-auto p-2 shadow">
           <li className="m-3">
                 <Link href="/" className={`hover:text-blue-500 ${pathname === '/' ? 'text-red-500' : ''}`}>
@@ -112,7 +112,7 @@ const Header = () => {
                   Detect with AI<div class="badge badge-primary badge-outline">new</div>
                 </Link>
               </li>
-              <li><button onClick={handleLogout} className=" ms-1 px-3 py-0 bg-red-700 text-white rounded-3xl hover:bg-red-500 focus:outline-none focus:border-gray-700 focus:ring focus:ring-gray-200">Logout</button></li>
+              <li><button onClick={handleLogout} className=" ms-1 px-3 py-0 bg-red-700 text-white font-bold rounded-3xl hover:bg-red-500 focus:outline-none focus:border-gray-700 focus:ring focus:ring-gray-200">Logout</button></li>
           </ul>
         </div>}
       </nav>

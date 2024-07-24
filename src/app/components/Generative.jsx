@@ -84,9 +84,9 @@ const Generative = () => {
     
 
     return (
-        <div className='bg-gray-500 w-auto h-auto p-5 flex flex-col items-center text-white'>
+        <div className='bg-neutral w-auto h-auto p-5 flex flex-col items-center text-primary'>
             <input
-                className='input input-bordered w-full max-w-xs my-10'
+                className='input input-bordered bg-secondary dark:text-black dark:bg-white w-full max-w-xs my-10'
                 type="url"
                 name="url"
                 id="url"
@@ -99,7 +99,7 @@ const Generative = () => {
             {url && <img className='my-10 w-36 h-auto' src={url} alt="image"/>}
             <div class="divider">OR</div>
             <input
-                className='file-input file-input-bordered w-full max-w-xs my-10'
+                className='file-input file-input-bordered bg-secondary dark:bg-white dark:text-black w-full max-w-xs my-10'
                 type="file"
                 name="inputimg"
                 id="inputimg"
@@ -109,7 +109,7 @@ const Generative = () => {
                 }}
             />
            
-            <textarea name="prompt" id="prompt" className='textarea textarea-bordered my-5' placeholder='Enter prompt (Optional) Example: Can you describe the logo in the image?' onChange={(e)=>{setPrompt(e.target.value)}}  rows='5'></textarea>
+            <textarea name="prompt" id="prompt" className='textarea bg-secondary textarea-bordered dark:bg-white dark:text-black my-5' placeholder='Enter prompt (Optional) Example: Can you describe the logo in the image?' onChange={(e)=>{setPrompt(e.target.value)}}  rows='5'></textarea>
             <button className='btn btn-primary' disabled={loading} onClick={handleGenerate}>Generate <img src="./gemini.png" alt="" className={`w-5 h-5 ${ loading ? 'animate-spin' : ''}` } /></button>
             <button className='btn btn-error mx-2 my-3' onClick={handlereset}>Clear</button>
             {selectedImage && (
