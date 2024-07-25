@@ -13,9 +13,7 @@ const Login = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const signupClick = () => {
-    router.push("/signup");
-  };
+  
 
   const handleLogin = async () => {
     
@@ -65,9 +63,9 @@ const Login = () => {
         </div>
 
         <div>
-          <div class="relative mt-2 w-full">
+          <div className="relative mt-2 w-full">
             <input
-              type="text"
+              type="email"
               id="email"
               className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pt-4 pb-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
               placeholder=" "
@@ -87,7 +85,7 @@ const Login = () => {
         </div>
 
         <div>
-          <div class="relative mt-2 w-full">
+          <div className="relative mt-2 w-full">
             <input
               type="password"
               id="password"
@@ -107,8 +105,8 @@ const Login = () => {
             </label>
           </div>
         </div>
-        <div className="flex w-full items-center">
-          <button onClick={handleLogin} class="shrink-0 inline-block w-36 rounded-lg bg-blue-600 py-3 font-bold text-white">
+        <div className="flex w-full items-center justify-center">
+          <button onClick={handleLogin} disabled={isLoading} className={`${isLoading?"cursor-not-allowed loading loading-sm loading-spinner":"cursor-pointer"} shrink-0 inline-block w-36 rounded-lg bg-primary py-3 font-bold text-white`}>
             Login
           </button>
           
