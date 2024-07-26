@@ -41,6 +41,8 @@ export const config = {
     "/",
     "/signup",
     "/login",
+    "/detect",
+    "/genai",
     "/profile/:path*",
     "/api/:path*",
   ],
